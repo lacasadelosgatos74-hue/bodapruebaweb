@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Julieta y Guillermo · Nuestra Boda</title>
+<meta name="description" content="Te invitamos a nuestra boda. Sábado 17 de abril de 2027, Campeche.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  /* Diseño: tarjeta vertical sobre fondo oliva, papel crema, follaje de eucalipto en las esquinas, nombres en caligrafía */
+  :root {
+    --oliva: #8e997f;
+    --crema: #f8f4ea;
+    --verde-tinta: #3a4a35;
+    --salvia: #9db39b;
+    --linea: rgba(58,74,53,.45);
+
+    --serif: "Cormorant Garamond", "Palatino Linotype", Georgia, serif;
+    --script: "Great Vibes", "Snell Roundhand", cursive;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--oliva);
+    color: var(--verde-tinta);
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    line-height: 1.55;
+    padding-block: 14px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  a { color: inherit; }
+  svg { display: block; }
+
+  .tarjeta {
+    position: relative;
+    max-width: 460px;
+    margin: 0 auto;
+    background: var(--crema);
+    overflow: hidden;
+    text-align: center;
+  }
+  .rama { position: absolute; pointer-events: none; }
+
+  .rotulo {
+    font-weight: 600;
+    font-size: .85rem;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+  }
+
+  /* Divisor con corazón */
+  .divisor { display: flex; align-items: center; justify-content: center; gap: .6rem; margin: 1.1rem auto; max-width: 240px; }
+  .divisor::before, .divisor::after { content: ""; flex: 1; border-top: 1px solid var(--linea); }
+  .divisor svg { width: 11px; height: 11px; fill: var(--verde-tinta); opacity: .7; }
+
+  /* Encabezado */
+  .encabezado { position: relative; padding: 6.5rem 2rem 1.5rem; }
+  .cita { max-width: 24ch; margin: 0 auto; font-size: .9rem; letter-spacing: .14em; text-transform: uppercase; line-height: 1.7; }
+  .cita small { display: block; margin-top: .6rem; font-size: .8rem; letter-spacing: .12em; }
+  .monograma {
+    display: flex; justify-content: center; align-items: stretch; gap: 1.1rem;
+    margin-top: 2.25rem;
+    font-weight: 500; font-size: clamp(3.8rem, 18vw, 5.2rem); line-height: 1;
+  }
+  .monograma i { width: 1px; background: var(--verde-tinta); font-style: normal; }
+  .encabezado .rotulo { margin-top: 1.1rem; letter-spacing: .34em; }
+
+  /* Foto con borde rasgado */
+  .foto { position: relative; aspect-ratio: 5 / 4; background: #dfe5d6; margin: 0;
+    clip-path: polygon(0% 1.5%, 5% .4%, 10% 2%, 16% .8%, 22% 2.2%, 29% .5%, 35% 1.8%, 42% .3%, 48% 2%, 55% .7%, 61% 2.3%, 68% .4%, 74% 1.9%, 81% .6%, 87% 2.1%, 93% .5%, 100% 1.6%, 100% 97.8%, 94% 99.4%, 88% 97.6%, 81% 99.2%, 75% 97.9%, 68% 99.5%, 62% 98%, 55% 99.3%, 49% 97.7%, 42% 99.4%, 36% 98.1%, 29% 99.6%, 23% 97.9%, 16% 99.3%, 9% 98%, 4% 99.4%, 0% 98.2%);
+  }
+  .foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .foto-vacia {
+    position: absolute; inset: 0; display: grid; place-content: center; gap: .4rem; padding: 1.5rem;
+    background: linear-gradient(160deg, #e6ebdc, #cfd8c3);
+    color: var(--verde-tinta); font-size: 1.15rem; font-style: italic;
+  }
+  .foto-vacia small { font-size: .85rem; font-style: normal; opacity: .75; }
+
+  /* Invitación */
+  .invita { position: relative; padding: 3rem 2rem 1rem; }
+  .invita p.texto { max-width: 30ch; margin: 0 auto; letter-spacing: .03em; }
+  .padres { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; text-align: left; font-size: 1rem; }
+  .padres .rotulo { font-size: .72rem; letter-spacing: .14em; margin-bottom: .35rem; }
+  .padres p { line-height: 1.4; }
+
+  /* Nombres */
+  .nombres { position: relative; padding: 2.5rem 1.5rem 1rem; }
+  .nombres .nombre { font-family: var(--script); font-size: clamp(3.4rem, 16vw, 4.8rem); line-height: 1.05; }
+  .nombres .n1 { text-align: left; padding-left: 1.5rem; }
+  .nombres .n2 { text-align: right; padding-right: 1rem; margin-top: -.2rem; }
+  .nombres .amp { font-family: var(--script); font-size: 2.4rem; line-height: 1; margin: -.15rem 0 -.2rem; opacity: .85; }
+  .honor { margin: 2.5rem auto 0; max-width: 24ch; font-size: .92rem; letter-spacing: .17em; text-transform: uppercase; line-height: 1.8; }
+
+  /* Fecha */
+  .fecha { padding: 1.5rem 2rem 2.5rem; }
+  .fecha .mes { letter-spacing: .3em; font-weight: 600; font-size: 1rem; }
+  .fecha-fila { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: .4rem; }
+  .fecha-fila .lado {
+    flex: 1; padding: .35rem 0; max-width: 130px;
+    border-top: 1px solid var(--verde-tinta); border-bottom: 1px solid var(--verde-tinta);
+    font-weight: 600; font-size: .85rem; letter-spacing: .24em;
+  }
+  .fecha-fila .dia { font-size: 4.4rem; font-weight: 500; line-height: 1; font-variant-numeric: lining-nums; }
+  .ornamento { width: 110px; height: 24px; margin: 1.5rem auto 0; opacity: .85; }
+
+  /* Detalles */
+  .seccion { position: relative; padding: 3rem 2rem; border-top: 1px solid rgba(58,74,53,.18); }
+  .seccion h2 { font-family: var(--script); font-weight: 400; font-size: 2.9rem; line-height: 1.1; margin-top: .4rem; }
+  .seccion p.suave { max-width: 32ch; margin: .75rem auto 0; }
+
+  .cuenta { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; margin-top: 1.5rem; }
+  .cuenta div { padding: .6rem 0; border-top: 1px solid var(--linea); }
+  .cuenta strong { display: block; font-size: 2.2rem; font-weight: 500; line-height: 1.1; font-variant-numeric: lining-nums tabular-nums; }
+  .cuenta span { font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
+
+  .evento { margin-top: 1.75rem; }
+  .evento + .evento { padding-top: 1.75rem; border-top: 1px solid var(--linea); }
+  .evento .hora { font-size: 2.2rem; font-weight: 500; line-height: 1; }
+  .evento h3 { font-weight: 600; font-size: .9rem; letter-spacing: .22em; text-transform: uppercase; margin-top: .5rem; }
+  .evento p { margin-top: .3rem; }
+  .mapa { display: inline-block; margin-top: .75rem; font-weight: 600; font-size: .8rem; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--verde-tinta); padding-bottom: .1rem; }
+
+  /* Confirmación */
+  form { display: grid; gap: 1.1rem; margin-top: 1.75rem; text-align: left; }
+  label, legend { font-weight: 600; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; }
+  input[type="text"], input[type="number"], textarea {
+    width: 100%; margin-top: .35rem; padding: .7rem .9rem;
+    font: inherit; color: var(--verde-tinta); background: #fffdf8;
+    border: 1px solid var(--linea); border-radius: 2px;
+  }
+  textarea { min-height: 5.5rem; resize: vertical; }
+  fieldset { border: 0; }
+  .opciones { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-top: .5rem; }
+  .opcion { position: relative; }
+  .opcion input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+  .opcion span { display: block; padding: .65rem .5rem; text-align: center; border: 1px solid var(--linea); border-radius: 2px; background: #fffdf8; font-size: 1.05rem; font-weight: 400; letter-spacing: 0; text-transform: none; }
+  .opcion input:checked + span { background: var(--verde-tinta); color: var(--crema); border-color: var(--verde-tinta); }
+  input:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible, .opcion input:focus-visible + span { outline: 2px solid var(--verde-tinta); outline-offset: 3px; }
+  button.enviar { margin-top: .4rem; padding: .95rem 1.25rem; font: inherit; font-weight: 600; font-size: .85rem; letter-spacing: .22em; text-transform: uppercase; color: var(--crema); background: var(--verde-tinta); border: 0; border-radius: 2px; cursor: pointer; }
+  button.enviar:hover { background: #2b3828; }
+  .aviso { min-height: 1.4em; text-align: center; font-size: 1rem; font-style: italic; }
+
+  .pie { padding: 2.5rem 2rem 3rem; border-top: 1px solid rgba(58,74,53,.18); }
+  .pie .firma { font-family: var(--script); font-size: 2.6rem; line-height: 1.2; }
+  .pie p { font-size: .85rem; letter-spacing: .3em; font-weight: 600; margin-top: .25rem; }
+</style>
+</head>
+<body>
+
+<!-- Dibujos reutilizables (hojas, ramas, corazón) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="hoja">
+      <path d="M0 0 C4 -13 30 -15 42 0 C30 15 4 13 0 0Z"/>
+      <path d="M3 0 L36 0" stroke="#fff" stroke-opacity=".35" stroke-width=".8" fill="none"/>
+    </g>
+    <symbol id="corazon" viewBox="0 0 24 24"><path d="M12 21s-8-5.4-8-11.2C4 6.6 6.3 4.5 8.8 4.5c1.4 0 2.6.7 3.2 1.8.6-1.1 1.8-1.8 3.2-1.8 2.5 0 4.8 2.1 4.8 5.3C20 15.6 12 21 12 21z"/></symbol>
+
+    <!-- Rama horizontal (esquina superior) -->
+    <g id="rama-sup">
+      <path d="M-10 70 C60 60 120 40 230 20" stroke="#8a7b5c" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M73 56 C68 85 60 110 46 138" stroke="#8a7b5c" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <use href="#hoja" transform="translate(5 68) rotate(-70) scale(1.2)" fill="#9db39b"/>
+      <use href="#hoja" transform="translate(20 64) rotate(60) scale(1.3)" fill="#b5c7b0"/>
+      <use href="#hoja" transform="translate(38 60) rotate(-60) scale(1.4)" fill="#7f9a82"/>
+      <use href="#hoja" transform="translate(55 56) rotate(55) scale(1.2)" fill="#c5d3bf"/>
+      <use href="#hoja" transform="translate(75 52) rotate(-55) scale(1.5)" fill="#9db39b"/>
+      <use href="#hoja" transform="translate(92 47) rotate(60) scale(1.3)" fill="#7f9a82"/>
+      <use href="#hoja" transform="translate(115 42) rotate(-50) scale(1.3)" fill="#b5c7b0"/>
+      <use href="#hoja" transform="translate(135 38) rotate(55) scale(1.2)" fill="#9db39b"/>
+      <use href="#hoja" transform="translate(157 33) rotate(-45) scale(1.1)" fill="#7f9a82"/>
+      <use href="#hoja" transform="translate(178 29) rotate(50) scale(1)" fill="#c5d3bf"/>
+      <use href="#hoja" transform="translate(197 25) rotate(-40) scale(.9)" fill="#9db39b"/>
+      <use href="#hoja" transform="translate(215 22) rotate(45) scale(.8)" fill="#b5c7b0"/>
+      <use href="#hoja" transform="translate(230 20) rotate(-5) scale(1)" fill="#7f9a82"/>
+      <use href="#hoja" transform="translate(71 66) rotate(110) scale(1.1)" fill="#b5c7b0"/>
+      <use href="#hoja" transform="translate(68 80) rotate(45) scale(1.2)" fill="#9db39b"/>
+      <use href="#hoja" transform="translate(65 94) rotate(120) scale(1.1)" fill="#c5d3bf"/>
+      <use href="#hoja" transform="translate(60 108) rotate(40) scale(1.2)" fill="#7f9a82"/>
+      <use href="#hoja" transform="translate(54 122) rotate(115) scale(1)" fill="#9db39b"/>
+      <use href="#hoja" transform="translate(46 138) rotate(80) scale(1.1)" fill="#b5c7b0"/>
+    </g>
+
+    <!-- Rama vertical (laterales) -->
+    <g id="rama-vert">
+      <path d="M18 275 C28 215 14 160 42 105 C54 82 62 55 74 15" stroke="#8a7b5c" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+      <use href="#hoja" transform="translate(21 258) rotate(-160) scale(1.3)" fill="#9db39b"/>
+      <use href="#hoja" transform="translate(23 240) rotate(-20) scale(1.4)" fill="#b5c7b0"/>
+      <use href="#hoja" transform="translate(24 222) rotate(-165) scale(1.3)" fill="#7f9a82"/>
+      <use href="#hoja" transform="translate(22 203) rotate(-15) scale(1.3)" fill="#c5d3bf"/>
+      <use href="#hoja" transform="translate(18 184) rotate(-160) scale(1.2)" fill="#9db39b"/>
+      <use href="#hoja" transform="translate(21 165) rotate(-30) scale(1.3)" fill="#7f9a82"/>
+      <use href="#hoja" transform="translate(28 145) rotate(-150) scale(1.2)" fill="#b5c7b0"/>
+      <use href="#hoja" transform="translate(36 125) rotate(-35) scale(1.2)" fill="#9db39b"/>
+      <use href="#hoja" transform="translate(44 104) rotate(-145) scale(1.1)" fill="#c5d3bf"/>
+      <use href="#hoja" transform="translate(52 85) rotate(-40) scale(1.1)" fill="#7f9a82"/>
+      <use href="#hoja" transform="translate(58 66) rotate(-140) scale(1)" fill="#9db39b"/>
+      <use href="#hoja" transform="translate(65 48) rotate(-45) scale(.9)" fill="#b5c7b0"/>
+      <use href="#hoja" transform="translate(74 16) rotate(-90) scale(.9)" fill="#7f9a82"/>
+    </g>
+  </defs>
+</svg>
+
+<main class="tarjeta">
+
+  <!-- Follaje superior izquierdo -->
+  <svg class="rama" style="top:-6px; left:-14px; width:74%;" viewBox="0 0 300 170" aria-hidden="true"><use href="#rama-sup"/></svg>
+
+  <!-- Encabezado -->
+  <header class="encabezado">
+    <p class="cita">Tres cosas permanecen: la fe, la esperanza y el amor. Y la más grande de ellas es el amor.
+      <small>1 Corintios 13:13</small>
+    </p>
+    <div class="monograma" aria-label="J y G"><span>J</span><i></i><span>G</span></div>
+    <p class="rotulo">Nuestra boda</p>
+    <div class="divisor"><svg aria-hidden="true"><use href="#corazon"/></svg></div>
+  </header>
+
+  <!-- Foto de la pareja (guarda tu foto como foto-pareja.jpg junto a este archivo) -->
+  <figure class="foto">
+    <div class="foto-vacia">Aquí va la foto de la pareja<small>Guárdala como foto-pareja.jpg junto a este archivo</small></div>
+    <img src="foto-pareja.jpg" alt="Julieta y Guillermo" onerror="this.remove()">
+  </figure>
+
+  <!-- Invitación y padres -->
+  <section class="invita">
+    <svg class="rama" style="right:-26px; top:150px; width:92px; transform:scaleX(-1); opacity:.9;" viewBox="0 0 120 280" aria-hidden="true"><use href="#rama-vert"/></svg>
+    <p class="texto">Con gran alegría y el corazón agradecido, junto a nuestros padres, los invitamos a compartir la celebración de nuestro amor al unirnos en matrimonio.</p>
+    <div class="divisor"><svg aria-hidden="true"><use href="#corazon"/></svg></div>
+    <div class="padres">
+      <div>
+        <p class="rotulo">Padres del novio</p>
+        <p>Sr. Raúl Canul Chan<br>y Sra. Elena May de Canul</p>
+      </div>
+      <div>
+        <p class="rotulo">Padres de la novia</p>
+        <p>Sr. Jorge Medina Pech<br>y Sra. Rosa Ortiz de Medina</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nombres -->
+  <section class="nombres">
+    <svg class="rama" style="left:-18px; bottom:-30px; width:104px;" viewBox="0 0 120 280" aria-hidden="true"><use href="#rama-vert"/></svg>
+    <div class="nombre n1">Julieta</div>
+    <div class="amp">&amp;</div>
+    <div class="nombre n2">Guillermo</div>
+    <p class="honor">Tenemos el honor de invitarlos a nuestra boda</p>
+  </section>
+
+  <!-- Fecha -->
+  <section class="fecha">
+    <p class="mes">ABRIL</p>
+    <div class="fecha-fila">
+      <span class="lado">SÁBADO</span>
+      <span class="dia">17</span>
+      <span class="lado">2027</span>
+    </div>
+    <svg class="ornamento" viewBox="0 0 120 24" aria-hidden="true">
+      <path d="M58 12 C45 12 30 14 12 10" stroke="#8a7b5c" stroke-width="1.2" fill="none"/>
+      <path d="M62 12 C75 12 90 14 108 10" stroke="#8a7b5c" stroke-width="1.2" fill="none"/>
+      <use href="#hoja" transform="translate(48 12) rotate(-150) scale(.5)" fill="#9db39b"/>
+      <use href="#hoja" transform="translate(36 13) rotate(-25) scale(.5)" fill="#7f9a82"/>
+      <use href="#hoja" transform="translate(24 12) rotate(-155) scale(.5)" fill="#b5c7b0"/>
+      <use href="#hoja" transform="translate(72 12) rotate(-30) scale(.5)" fill="#9db39b"/>
+      <use href="#hoja" transform="translate(84 13) rotate(-155) scale(.5)" fill="#7f9a82"/>
+      <use href="#hoja" transform="translate(96 12) rotate(-25) scale(.5)" fill="#b5c7b0"/>
+      <use href="#corazon" x="54" y="6" width="12" height="12" fill="#3a4a35" opacity=".75"/>
+    </svg>
+  </section>
+
+  <!-- Cuenta regresiva -->
+  <section class="seccion">
+    <p class="rotulo">Faltan</p>
+    <div class="cuenta" role="timer" aria-label="Cuenta regresiva para la boda">
+      <div><strong id="dias">--</strong><span>Días</span></div>
+      <div><strong id="horas">--</strong><span>Horas</span></div>
+      <div><strong id="minutos">--</strong><span>Min</span></div>
+      <div><strong id="segundos">--</strong><span>Seg</span></div>
+    </div>
+  </section>
+
+  <!-- Programa -->
+  <section class="seccion">
+    <p class="rotulo">El gran día</p>
+    <h2>Programa</h2>
+
+    <article class="evento">
+      <div class="hora">6:00 pm</div>
+      <h3>Ceremonia</h3>
+      <p>Catedral de la Inmaculada Concepción<br>Centro Histórico, Campeche</p>
+      <a class="mapa" href="https://www.google.com/maps/search/?api=1&query=Catedral+de+Nuestra+Se%C3%B1ora+de+la+Pur%C3%ADsima+Concepci%C3%B3n+Campeche" target="_blank" rel="noopener">Ver mapa</a>
+    </article>
+
+    <article class="evento">
+      <div class="hora">8:00 pm</div>
+      <h3>Recepción</h3>
+      <p>Hacienda Uayamón<br>Campeche, Campeche</p>
+      <a class="mapa" href="https://www.google.com/maps/search/?api=1&query=Hacienda+Uayam%C3%B3n+Campeche" target="_blank" rel="noopener">Ver mapa</a>
+    </article>
+  </section>
+
+  <!-- Vestimenta -->
+  <section class="seccion">
+    <p class="rotulo">Código de vestimenta</p>
+    <h2>Formal</h2>
+    <p class="suave">Campeche es cálido en abril, así que te recomendamos telas ligeras. Te pedimos evitar el blanco.</p>
+  </section>
+
+  <!-- Confirmación -->
+  <section class="seccion" id="confirmar">
+    <p class="rotulo">Responde antes del 1 de marzo</p>
+    <h2>Confirma tu asistencia</h2>
+    <p class="suave">Al enviar, se abrirá WhatsApp con tu respuesta lista.</p>
+
+    <form id="form-rsvp">
+      <div>
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" autocomplete="name" required>
+      </div>
+      <fieldset>
+        <legend>¿Nos acompañas?</legend>
+        <div class="opciones">
+          <label class="opcion"><input type="radio" name="asistencia" value="sí asistiré" checked><span>Sí, ahí estaré</span></label>
+          <label class="opcion"><input type="radio" name="asistencia" value="no podré asistir"><span>No podré ir</span></label>
+        </div>
+      </fieldset>
+      <div>
+        <label for="personas">Número de personas</label>
+        <input type="number" id="personas" name="personas" min="1" max="10" value="1" inputmode="numeric">
+      </div>
+      <div>
+        <label for="mensaje">Mensaje para los novios (opcional)</label>
+        <textarea id="mensaje" name="mensaje"></textarea>
+      </div>
+      <button class="enviar" type="submit">Enviar confirmación</button>
+      <p class="aviso" id="aviso" role="status"></p>
+    </form>
+  </section>
+
+  <footer class="pie">
+    <div class="firma">Julieta &amp; Guillermo</div>
+    <p>17 · 04 · 2027</p>
+  </footer>
+</main>
+
+<script>
+  /* ===== CAMBIA AQUÍ LOS DATOS DE LA BODA ===== */
+  const FECHA_BODA = new Date("2027-04-17T18:00:00-06:00"); // año-mes-díaTHH:MM, zona de México
+  const WHATSAPP   = "529811234567";                         // país + lada + número, sin + ni espacios
+  /* ============================================ */
+
+  const el = id => document.getElementById(id);
+
+  function actualizarCuenta() {
+    let falta = FECHA_BODA - new Date();
+    if (falta < 0) falta = 0;
+    const seg = Math.floor(falta / 1000);
+    el("dias").textContent     = Math.floor(seg / 86400);
+    el("horas").textContent    = String(Math.floor((seg % 86400) / 3600)).padStart(2, "0");
+    el("minutos").textContent  = String(Math.floor((seg % 3600) / 60)).padStart(2, "0");
+    el("segundos").textContent = String(seg % 60).padStart(2, "0");
+  }
+  actualizarCuenta();
+  setInterval(actualizarCuenta, 1000);
+
+  document.getElementById("form-rsvp").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const nombre = el("nombre").value.trim();
+    const asistencia = this.elements["asistencia"].value;
+    const personas = el("perso
